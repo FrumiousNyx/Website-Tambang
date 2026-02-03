@@ -11,10 +11,38 @@ export const metadata: Metadata = {
   title: 'PT Semen Nusantara - Produsen Semen Terpercaya Indonesia',
   description: 'PT Semen Nusantara adalah perusahaan tambang dan produsen semen terkemuka di Indonesia dengan kapasitas produksi tinggi dan kualitas premium.',
   generator: 'v0.app',
-  // Kode verifikasi Google Search Console yang benar sudah diperbarui di bawah ini
+  
+  // Verifikasi Google Search Console
   verification: {
     google: 'Sjc5_UVXjju6MlLayc_xz7hJZ_9KXooz19-m_FjIOi8',
   },
+
+  // OpenGraph untuk tampilan share di Media Sosial (WA, FB, LinkedIn)
+  openGraph: {
+    title: 'PT Semen Nusantara - Membangun Negeri dengan Kualitas',
+    description: 'Produsen semen premium dengan standar internasional dan komitmen keberlanjutan.',
+    url: 'https://website-tambang.vercel.app',
+    siteName: 'PT Semen Nusantara',
+    images: [
+      {
+        url: '/og-image.jpg', // Pastikan file ini ada di folder public/
+        width: 1200,
+        height: 630,
+        alt: 'PT Semen Nusantara Indonesia',
+      },
+    ],
+    locale: 'id_ID',
+    type: 'website',
+  },
+
+  // Twitter Card
+  twitter: {
+    card: 'summary_large_image',
+    title: 'PT Semen Nusantara',
+    description: 'Produsen semen terpercaya di Indonesia.',
+    images: ['/og-image.jpg'],
+  },
+
   icons: {
     icon: [
       {
@@ -40,7 +68,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en">
+    <html lang="id"> {/* Mengubah lang ke "id" karena website berbahasa Indonesia */}
       <body className={`font-sans antialiased`}>
         {children}
         <Analytics />
