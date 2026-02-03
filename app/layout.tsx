@@ -1,7 +1,8 @@
 import React from "react"
 import type { Metadata } from 'next'
 import { Geist, Geist_Mono } from 'next/font/google'
-import { Analytics } from '@vercelanalytics/next'
+// PERBAIKAN: Menggunakan path import yang benar sesuai package @vercel/analytics
+import { Analytics } from '@vercel/analytics/react'
 import './globals.css'
 
 const _geist = Geist({ subsets: ["latin"] });
@@ -59,6 +60,7 @@ export default function RootLayout({
     <html lang="id">
       <body className={`font-sans antialiased`}>
         {children}
+        {/* Analytics diletakkan di sini agar melacak setiap kunjungan */}
         <Analytics />
 
         {/* Skrip Proteksi Keamanan Konten */}
