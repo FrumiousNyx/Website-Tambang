@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# Beritahu lokasi sitemap ke Google
+Sitemap: https://website-tambang.vercel.app/sitemap.xml
