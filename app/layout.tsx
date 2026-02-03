@@ -11,9 +11,9 @@ export const metadata: Metadata = {
   title: 'PT Semen Nusantara - Produsen Semen Terpercaya Indonesia',
   description: 'PT Semen Nusantara adalah perusahaan tambang dan produsen semen terkemuka di Indonesia dengan kapasitas produksi tinggi dan kualitas premium.',
   generator: 'v0.app',
-  // Kode verifikasi Google Search Console Anda ditambahkan di sini
+  // Kode verifikasi Google Search Console yang benar sudah diperbarui di bawah ini
   verification: {
-    google: 'google83454d713701e9bf',
+    google: 'Sjc5_UVXjju6MlLayc_xz7hJZ_9KXooz19-m_FjIOi8',
   },
   icons: {
     icon: [
