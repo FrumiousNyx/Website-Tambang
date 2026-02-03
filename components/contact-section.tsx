@@ -1,46 +1,44 @@
 "use client"
+import { useLanguage } from "@/hooks/use-language"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Card, CardContent } from "@/components/ui/card"
-import { Phone, Mail, MapPin, Clock, Send } from "lucide-react"
+import { Send } from "lucide-react"
 
 export function ContactSection() {
+  const { lang } = useLanguage()
+
+  const t = {
+    id: { title: "Hubungi Kami", sub: "Siap Membantu Proyek Anda", btn: "Kirim Sekarang", opt1: "Informasi Umum", opt2: "Karier", opt3: "Bisnis" },
+    en: { title: "Contact Us", sub: "Ready to Support Your Project", btn: "Send Now", opt1: "General Inquiry", opt2: "Career Inquiry", opt3: "Business Inquiry" }
+  }
+
+  const content = t[lang]
+
   return (
-    <section id="kontak" className="py-20 lg:py-32 bg-background">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20">
-          <div>
-            <span className="text-primary font-semibold text-sm uppercase tracking-wider">Hubungi Kami</span>
-            <h2 className="mt-4 text-3xl sm:text-4xl font-bold text-foreground">Siap Membantu Proyek Anda</h2>
-            <p className="mt-4 text-muted-foreground">Kami melayani pertanyaan seputar produk, peluang karier, dan kerjasama distribusi semen nasional.</p>
-          </div>
-
-          <Card className="bg-card border-border shadow-xl">
-            <CardContent className="p-6 lg:p-8">
-              <h3 className="text-xl font-bold text-card-foreground">Formulir Bisnis & Karier</h3>
-              <form className="mt-6 space-y-4" onSubmit={(e) => { e.preventDefault(); alert('Pesan Terkirim!'); }}>
-                <div className="grid sm:grid-cols-2 gap-4">
-                  <Input placeholder="Nama Lengkap" required />
-                  <Input placeholder="Nama Perusahaan (Opsional)" />
-                </div>
-                
-                {/* DROPDOWN KOMPLEKS */}
-                <select className="w-full p-2.5 rounded-md border border-border bg-background text-sm focus:ring-2 focus:ring-primary">
-                  <option value="pertanyaan">Pertanyaan Umum</option>
-                  <option value="karier">Lamaran Karier (Lampirkan Link CV)</option>
-                  <option value="distribusi">Permintaan Penawaran Harga / Distributor</option>
-                </select>
-
-                <Textarea placeholder="Tuliskan pesan Anda atau link CV (untuk pelamar kerja)..." rows={4} required />
-                
-                <Button type="submit" className="w-full bg-primary hover:bg-primary/90 py-6 text-lg">
-                  <Send className="mr-2 h-5 w-5" /> Kirim Sekarang
-                </Button>
-              </form>
-            </CardContent>
-          </Card>
+    <section className="py-20 bg-background">
+      <div className="max-w-7xl mx-auto px-4 grid lg:grid-cols-2 gap-12">
+        <div>
+          <span className="text-primary font-semibold text-sm uppercase">{content.title}</span>
+          <h2 className="mt-4 text-3xl font-bold">{content.sub}</h2>
         </div>
+        <Card>
+          <CardContent className="p-6">
+            <form className="space-y-4">
+              <Input placeholder={lang === 'id' ? "Nama Lengkap" : "Full Name"} />
+              <select className="w-full p-2 border rounded-md bg-background">
+                <option value="umum">{content.opt1}</option>
+                <option value="karier">{content.opt2}</option>
+                <option value="bisnis">{content.opt3}</option>
+              </select>
+              <Textarea placeholder={lang === 'id' ? "Pesan Anda" : "Your Message"} rows={4} />
+              <Button type="submit" className="w-full">
+                <Send className="mr-2 h-4 w-4" /> {content.btn}
+              </Button>
+            </form>
+          </CardContent>
+        </Card>
       </div>
     </section>
   )

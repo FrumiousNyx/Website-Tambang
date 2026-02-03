@@ -1,13 +1,13 @@
 "use client"
 
-import { useState } from "react"
 import Link from "next/link"
+import { useLanguage } from "@/hooks/use-language" // Pusat kendali bahasa
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { Card, CardContent } from "@/components/ui/card"
-import { ArrowLeft, Linkedin, Mail, Globe } from "lucide-react"
+import { ArrowLeft, Linkedin, Mail } from "lucide-react"
 
-// --- LOCAL CMS DATA (Data Terpusat & Multi-Bahasa) ---
+// --- LOCAL CMS DATA (Data Terpusat) ---
 const MANAGEMENT_DATA = {
   id: {
     heroTitle: "Tim Manajemen",
@@ -48,23 +48,13 @@ const MANAGEMENT_DATA = {
 }
 
 export default function ManajemenPage() {
-  const [lang, setLang] = useState<'id' | 'en'>('id')
+  // Mengambil status bahasa dari Header secara global
+  const { lang } = useLanguage()
   const content = MANAGEMENT_DATA[lang]
 
   return (
     <main className="min-h-screen">
       <Header />
-
-      {/* --- SIMULASI MULTI-BAHASA TOGGLE --- */}
-      <div className="fixed top-24 right-4 z-50">
-        <button 
-          onClick={() => setLang(lang === 'id' ? 'en' : 'id')}
-          className="flex items-center gap-2 bg-primary text-white px-4 py-2 rounded-full shadow-lg hover:bg-primary/90 transition-all font-bold"
-        >
-          <Globe className="w-4 h-4" />
-          {lang === 'id' ? 'Switch to English' : 'Ubah ke Bahasa Indonesia'}
-        </button>
-      </div>
 
       {/* Hero */}
       <section className="pt-24 lg:pt-32 pb-16 bg-gradient-to-b from-muted to-background">
@@ -88,7 +78,7 @@ export default function ManajemenPage() {
         </div>
       </section>
 
-      {/* Board of Directors (Local CMS Loop) */}
+      {/* Board of Directors */}
       <section className="py-16 lg:py-24 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-2xl mx-auto mb-12">
@@ -109,6 +99,10 @@ export default function ManajemenPage() {
                   <h3 className="font-bold text-card-foreground">{person.name}</h3>
                   <p className="text-sm text-primary font-medium mt-1">{person.position}</p>
                   <p className="mt-3 text-sm text-muted-foreground">{person.description}</p>
+                  <div className="flex gap-3 mt-4">
+                    <Linkedin className="w-5 h-5 text-muted-foreground hover:text-primary cursor-pointer" />
+                    <Mail className="w-5 h-5 text-muted-foreground hover:text-primary cursor-pointer" />
+                  </div>
                 </CardContent>
               </Card>
             ))}
@@ -116,7 +110,7 @@ export default function ManajemenPage() {
         </div>
       </section>
 
-      {/* Board of Commissioners (Local CMS Loop) */}
+      {/* Board of Commissioners */}
       <section className="py-16 lg:py-24 bg-muted">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-2xl mx-auto mb-12">
