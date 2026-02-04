@@ -1,35 +1,10 @@
+"use client"
+
 import Link from "next/link"
 import { Mountain, Mail, Phone, MapPin, Facebook, Instagram, Linkedin, Youtube, Twitter } from "lucide-react"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
-
-const sitemapLinks = {
-  perusahaan: [
-    { label: "Profil Perusahaan", href: "/perusahaan/profil" },
-    { label: "Sejarah", href: "/perusahaan/sejarah" },
-    { label: "Manajemen", href: "/perusahaan/manajemen" },
-    { label: "Visi & Misi", href: "/perusahaan/profil#visi-misi" },
-    { label: "Karir", href: "/karir" },
-  ],
-  produk: [
-    { label: "OPC (Ordinary Portland Cement)", href: "/produk/opc" },
-    { label: "PCC (Portland Composite Cement)", href: "/produk/pcc" },
-    { label: "Semen Khusus", href: "/produk" },
-    { label: "Spesifikasi Teknis", href: "/produk" },
-  ],
-  layanan: [
-    { label: "Fasilitas Produksi", href: "/fasilitas" },
-    { label: "Pengiriman & Logistik", href: "/fasilitas#logistik" },
-    { label: "Konsultasi Teknis", href: "/kontak" },
-    { label: "Distributor", href: "/kontak#distributor" },
-  ],
-  informasi: [
-    { label: "Berita & Kegiatan", href: "/berita" },
-    { label: "CSR", href: "/berita?kategori=csr" },
-    { label: "Keberlanjutan", href: "/keberlanjutan" },
-    { label: "Hubungan Investor", href: "/investor" },
-  ],
-}
+import { useTranslations } from "@/hooks/use-language"
 
 const socialLinks = [
   { icon: Facebook, href: "#", label: "Facebook" },
@@ -40,10 +15,40 @@ const socialLinks = [
 ]
 
 export function Footer() {
+  const t = useTranslations()
+
+  const sitemapLinks = {
+    perusahaan: [
+      { label: t.footer.links.companyProfile, href: "/perusahaan/profil" },
+      { label: t.footer.links.history, href: "/perusahaan/sejarah" },
+      { label: t.footer.links.management, href: "/perusahaan/manajemen" },
+      { label: t.footer.links.visionMission, href: "/perusahaan/profil#visi-misi" },
+      { label: t.footer.links.career, href: "/karir" },
+    ],
+    produk: [
+      { label: t.footer.links.opc, href: "/produk/opc" },
+      { label: t.footer.links.pcc, href: "/produk/pcc" },
+      { label: t.footer.links.specialCement, href: "/produk" },
+      { label: t.footer.links.technicalSpecs, href: "/download" },
+    ],
+    layanan: [
+      { label: t.footer.links.productionFacility, href: "/fasilitas" },
+      { label: t.footer.links.deliveryLogistics, href: "/fasilitas#logistik" },
+      { label: t.footer.links.technicalConsultation, href: "/kontak" },
+      { label: t.footer.links.distributor, href: "/dealer" },
+    ],
+    informasi: [
+      { label: t.footer.links.newsActivities, href: "/berita" },
+      { label: t.nav.projects, href: "/proyek" },
+      { label: t.footer.links.sustainability, href: "/keberlanjutan" },
+      { label: t.footer.links.investorRelations, href: "/investor" },
+    ],
+  }
+
   return (
     <footer className="bg-secondary text-secondary-foreground">
       {/* Main Footer */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <div className="max-w-[1100px] mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-8 lg:gap-12">
           {/* Brand & Contact */}
           <div className="lg:col-span-2">
@@ -54,13 +59,13 @@ export function Footer() {
               <span className="font-bold text-lg text-secondary-foreground">Semen Nusantara</span>
             </Link>
             <p className="mt-4 text-sm text-secondary-foreground/70 leading-relaxed">
-              Produsen semen terkemuka Indonesia, membangun fondasi yang kuat untuk masa depan bangsa sejak 1985.
+              {t.footer.description}
             </p>
 
             {/* Office Addresses */}
             <div className="mt-6 space-y-4">
               <div>
-                <h5 className="font-semibold text-sm text-secondary-foreground mb-2">Kantor Pusat - Jember</h5>
+                <h5 className="font-semibold text-sm text-secondary-foreground mb-2">{t.footer.headquarters}</h5>
                 <div className="flex items-start gap-2 text-sm text-secondary-foreground/70">
                   <MapPin className="w-4 h-4 mt-0.5 shrink-0" />
                   <span>Jl. Raya Industri No. 123, Kecamatan Sumbersari, Kabupaten Jember, Jawa Timur 68121</span>
@@ -71,7 +76,7 @@ export function Footer() {
                 </div>
               </div>
               <div>
-                <h5 className="font-semibold text-sm text-secondary-foreground mb-2">Kantor Perwakilan - Jakarta</h5>
+                <h5 className="font-semibold text-sm text-secondary-foreground mb-2">{t.footer.representative}</h5>
                 <div className="flex items-start gap-2 text-sm text-secondary-foreground/70">
                   <MapPin className="w-4 h-4 mt-0.5 shrink-0" />
                   <span>Menara Sudirman Lt. 25, Jl. Jend. Sudirman Kav. 60, Jakarta Selatan 12190</span>
@@ -89,7 +94,7 @@ export function Footer() {
 
             {/* Social Links */}
             <div className="mt-6">
-              <h5 className="font-semibold text-sm text-secondary-foreground mb-3">Ikuti Kami</h5>
+              <h5 className="font-semibold text-sm text-secondary-foreground mb-3">{t.footer.followUs}</h5>
               <div className="flex gap-3">
                 {socialLinks.map((social) => (
                   <a
@@ -107,7 +112,7 @@ export function Footer() {
 
           {/* Sitemap Links */}
           <div>
-            <h4 className="font-semibold text-secondary-foreground mb-4">Perusahaan</h4>
+            <h4 className="font-semibold text-secondary-foreground mb-4">{t.footer.sections.company}</h4>
             <ul className="space-y-3">
               {sitemapLinks.perusahaan.map((link) => (
                 <li key={link.label}>
@@ -120,7 +125,7 @@ export function Footer() {
           </div>
 
           <div>
-            <h4 className="font-semibold text-secondary-foreground mb-4">Produk</h4>
+            <h4 className="font-semibold text-secondary-foreground mb-4">{t.footer.sections.products}</h4>
             <ul className="space-y-3">
               {sitemapLinks.produk.map((link) => (
                 <li key={link.label}>
@@ -133,7 +138,7 @@ export function Footer() {
           </div>
 
           <div>
-            <h4 className="font-semibold text-secondary-foreground mb-4">Layanan</h4>
+            <h4 className="font-semibold text-secondary-foreground mb-4">{t.footer.sections.services}</h4>
             <ul className="space-y-3">
               {sitemapLinks.layanan.map((link) => (
                 <li key={link.label}>
@@ -146,7 +151,7 @@ export function Footer() {
           </div>
 
           <div>
-            <h4 className="font-semibold text-secondary-foreground mb-4">Informasi</h4>
+            <h4 className="font-semibold text-secondary-foreground mb-4">{t.footer.sections.information}</h4>
             <ul className="space-y-3">
               {sitemapLinks.informasi.map((link) => (
                 <li key={link.label}>
@@ -159,16 +164,16 @@ export function Footer() {
 
             {/* Newsletter */}
             <div className="mt-8">
-              <h4 className="font-semibold text-secondary-foreground mb-3">Newsletter</h4>
-              <p className="text-sm text-secondary-foreground/70 mb-3">Dapatkan update terbaru dari kami</p>
+              <h4 className="font-semibold text-secondary-foreground mb-3">{t.footer.newsletter}</h4>
+              <p className="text-sm text-secondary-foreground/70 mb-3">{t.footer.newsletterDesc}</p>
               <div className="flex gap-2">
                 <Input
                   type="email"
-                  placeholder="Email Anda"
+                  placeholder="Email"
                   className="bg-secondary-foreground/10 border-secondary-foreground/20 text-secondary-foreground placeholder:text-secondary-foreground/50"
                 />
                 <Button className="bg-primary hover:bg-primary/90 text-primary-foreground shrink-0">
-                  Kirim
+                  {t.footer.send}
                 </Button>
               </div>
             </div>
@@ -178,20 +183,20 @@ export function Footer() {
 
       {/* Bottom Bar */}
       <div className="border-t border-secondary-foreground/10">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+        <div className="max-w-[1100px] mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-sm text-secondary-foreground/70">
-              &copy; {new Date().getFullYear()} PT Semen Nusantara Indonesia. Hak Cipta Dilindungi.
+              &copy; {new Date().getFullYear()} PT Semen Nusantara Indonesia. {t.footer.copyright}
             </p>
             <div className="flex flex-wrap justify-center gap-6">
               <Link href="/kebijakan-privasi" className="text-sm text-secondary-foreground/70 hover:text-primary transition-colors">
-                Kebijakan Privasi
+                {t.footer.links.privacyPolicy}
               </Link>
               <Link href="/syarat-ketentuan" className="text-sm text-secondary-foreground/70 hover:text-primary transition-colors">
-                Syarat & Ketentuan
+                {t.footer.links.termsConditions}
               </Link>
               <Link href="/sitemap" className="text-sm text-secondary-foreground/70 hover:text-primary transition-colors">
-                Sitemap
+                {t.footer.links.sitemap}
               </Link>
             </div>
           </div>
